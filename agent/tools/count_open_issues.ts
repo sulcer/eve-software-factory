@@ -20,7 +20,8 @@ export default defineTool({
    * Count open issues on `FACTORY_REPO`.
    *
    * @param _input - No input.
-   * @returns The `count`, or an `error`.
+   * @returns The `count` and whether GitHub's search timed out (`incomplete`), or an `error`
+   *   without a count, so a failure can't read as zero open issues.
    */
   async execute() {
     try {
@@ -35,17 +36,22 @@ export default defineTool({
           },
         }
       );
-      if (!response.ok) {
+      const body = (await response.json()) as {
+        incomplete_results?: boolean;
+        message?: string;
+        total_count?: number;
+      };
+      if (!response.ok || body.total_count === undefined) {
         return {
-          count: 0,
-          error: `GitHub search failed with status ${response.status}`,
+          error: `GitHub search failed with status ${response.status}: ${body.message ?? "no message"}`,
         };
       }
-      const body = (await response.json()) as { total_count: number };
-      return { count: body.total_count };
+      return {
+        count: body.total_count,
+        incomplete: body.incomplete_results === true,
+      };
     } catch (error) {
       return {
-        count: 0,
         error:
           error instanceof Error ? error.message : "Failed to count issues",
       };
@@ -53,7 +59,8 @@ export default defineTool({
   },
   inputSchema: z.object({}),
   outputSchema: z.object({
-    count: z.number(),
+    count: z.number().optional(),
     error: z.string().optional(),
+    incomplete: z.boolean().optional(),
   }),
 });
