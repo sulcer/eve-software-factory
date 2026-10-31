@@ -1,5 +1,5 @@
 ---
-description: "Drafting release notes or a changelog entry from merged pull requests on the factory repository. Use this skill when asked to write release notes, a changelog, or a summary of what shipped since a date, tag, or number of pull requests. Not needed for summarizing a single issue or reviewing an open pull request."
+description: "Drafting release notes or a changelog entry from merged pull requests on the factory repository. Use this skill when asked to write release notes, a changelog, or a summary of what shipped since a date or over the last few pull requests. Not needed for summarizing a single issue or reviewing an open pull request."
 ---
 # Release Notes
 
@@ -7,10 +7,11 @@ How to turn merged pull requests into release notes a user of the project can re
 
 ## 1. Collect the right pull requests
 
-- List closed pull requests on the factory repository, newest first, and keep only the merged ones. A closed pull request that never merged did not ship.
-- Respect the range you were given: a count ("the last 5"), a date ("since October 1"), or a tag. If no range was given, use the pull requests merged since the latest release tag, and say which range you used.
+- Find merged pull requests with an issue search on the factory repository using `is:pr is:merged`, adding `merged:>=YYYY-MM-DD` for a date range. Listing pull requests is not enough: that list orders by creation date and doesn't say which ones merged.
+- Respect the range you were given: a count ("the last 5") or a date ("since October 1"). For a count, read the candidates and keep the ones with the latest merge dates. If no range was given, use the last 10 merged pull requests.
+- Always state the range you used, including the oldest and newest merge dates you covered, so the reader can check it.
 - Skip pull requests that change nothing a user sees: dependency bumps, CI config, release automation. Mention them in one closing line ("Plus 3 maintenance updates") instead of listing them.
-- Read each pull request's title, description, and changed files before describing it. Never describe a change from its title alone.
+- Read each pull request's full context (description, changed files, merge date) before describing it. Never describe a change from its title alone.
 
 ## 2. Group by what users notice
 
@@ -26,9 +27,8 @@ Use these headings, in this order, and drop any that would be empty:
 - One line per change, starting with a verb in the past tense: "Added", "Fixed", "Removed".
 - Say what changed for the user, then link the pull request by number, like (#42).
 - Merge several pull requests into one line when they deliver one change.
-- Credit outside contributors by GitHub handle; leave out the maintainers' own names.
 
 ## 4. Deliver
 
-- Return the notes as Markdown in your reply. Don't publish a release, push a tag, or edit a file unless asked to, and if asked, treat it as a write that follows the normal approval rules.
-- End with the range covered and the number of pull requests read, so the reader can check nothing was missed.
+- Return the notes as Markdown in your reply. Don't open issues or pull requests with them unless the requester asks.
+- End with the range covered and the number of pull requests read.
