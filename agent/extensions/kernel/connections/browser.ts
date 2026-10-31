@@ -8,12 +8,18 @@ import { once } from "eve/tools/approval";
  * @remarks
  * - `once()` parks each browser tool on an approval card the first time a
  *   session calls it; after an explicit approval, later calls to that tool in
- *   the same session run without one. A denial leaves it gated.
+ *   the same session run without one, whoever asks next. A denial leaves it
+ *   gated.
+ * - Auth is per user through Connect, so only attended sessions can browse:
+ *   unattended runs carry a service principal and fail authorization.
  * - The allowlist restates the extension's seven defaults, so tools the KERNEL
  *   server adds later stay hidden until listed here. `browser_curl`,
  *   `manage_credentials`, `exec_command`, and `manage_browser_pools` stay out
  *   on purpose: raw HTTP, stored credentials, and shell access widen the blast
- *   radius, and without `manage_credentials` a person completes every sign-in.
+ *   radius. Without `manage_credentials` the agent cannot create or read stored
+ *   credentials, but `manage_auth_connections` can still sign in with ones a
+ *   person already stored in KERNEL, so keep only least-privileged accounts
+ *   there.
  */
 export default defineMcpClientConnection({
   approval: once(),
