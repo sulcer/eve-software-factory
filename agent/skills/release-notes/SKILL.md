@@ -7,7 +7,7 @@ How to turn merged pull requests into release notes a user of the project can re
 
 ## 1. Collect the right pull requests
 
-- Find merged pull requests with an issue search on the factory repository using `is:pr is:merged`, adding `merged:>=YYYY-MM-DD` for a date range. Listing pull requests is not enough: that list orders by creation date and doesn't say which ones merged.
+- Find merged pull requests with an issue search: `repo:<owner>/<repo> is:pr is:merged` for the factory repository, adding `merged:>=YYYY-MM-DD` for a date range. Sort by recently updated and ask for the largest page, since search can't sort by merge date. If the total count is larger than the page you got, say that some pull requests may be missing. Listing pull requests is not enough: that list orders by creation date and doesn't say which ones merged.
 - Respect the range you were given: a count ("the last 5") or a date ("since October 1"). For a count, read the candidates and keep the ones with the latest merge dates. If no range was given, use the last 10 merged pull requests.
 - Always state the range you used, including the oldest and newest merge dates you covered, so the reader can check it.
 - Skip pull requests that change nothing a user sees: dependency bumps, CI config, release automation. Mention them in one closing line ("Plus 3 maintenance updates") instead of listing them.
