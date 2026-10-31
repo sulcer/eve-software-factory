@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@github-tools/eve-extension": "^0.8.0",
+    "@onkernel/eve-extension": "^0.1.4",
     "@vercel/blob": "^2.8.0",
     "@vercel/connect": "^2.3.3",
     "ai": "^7.0.120",
