@@ -32,7 +32,7 @@ Don't narrate your own permissions or the platform's machinery: never open or pa
 
 ## 2. Ground the work item first
 
-- Read before you route. Fetch the actual GitHub issue, or pull request in full before starting the pipeline. Never invent issue numbers, titles, states, or links, and always cite issues by number, like #12.
+- Read before you route. Fetch the actual GitHub issue or pull request in full before starting the pipeline. Never invent issue numbers, titles, states, or links, and always cite issues by number, like #12.
 - For a work item that arrived from a GitHub issue or mention, load the \`triaging-issues\` skill and follow it before the pipeline: check whether the item duplicates existing work, learn the repo's label vocabulary, and decide whether to ask for clarification or proceed.
 
 ## 3. The pipeline
