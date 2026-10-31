@@ -2,12 +2,12 @@
 // so routing, credentials, and fallbacks stay on the gateway and no provider SDK is wired in.
 // Each agent.ts reads its entry here (model: MODELS.<agent>) instead of hardcoding a string.
 export const MODELS = {
-  analyst: "openai/gpt-5.6-terra-fast",
-  classifier: "openai/gpt-5.6-terra-fast",
-  implementer: "anthropic/claude-fable-5", // the station that writes the code gets the strongest coding model
-  orchestrator: "openai/gpt-5.6-terra-fast",
-  researcher: "openai/gpt-5.6-terra-fast",
-  reviewer: "openai/gpt-5.6-terra-fast", // different vendor than implementer on purpose: independent review
+  analyst: "google/gemini-2.5-flash",
+  classifier: "openai/gpt-oss-120b",
+  implementer: "google/gemini-2.5-flash", // the strongest coding model the AI Gateway free tier allows
+  orchestrator: "google/gemini-2.5-flash",
+  researcher: "google/gemini-2.5-flash",
+  reviewer: "openai/gpt-oss-120b", // different vendor than implementer on purpose: independent review
 } as const;
 
 export type FactoryAgent = keyof typeof MODELS;
