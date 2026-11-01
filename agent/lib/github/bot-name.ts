@@ -3,7 +3,7 @@ import { GITHUB_CONNECTOR } from "./credentials.js";
 
 /**
  * Name used where a resolution failure must not stop the work, like the
- * sandbox commit identity. Matches the template's default persona.
+ * sandbox commit identity. Matches the factory's default persona.
  */
 export const FALLBACK_BOT_NAME = "Foreman";
 

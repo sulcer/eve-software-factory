@@ -117,10 +117,10 @@ export function isTrusted(auth: SessionAuthContext | null): boolean {
  * The app principal eve stamps on schedule-dispatched turns.
  *
  * @remarks
- * No schedule ships in this template, but the approval policies already
- * recognize the principal so a schedule added later (see the README's
- * extending section) inherits sensible write behavior: reversible writes run,
- * anything that ships still parks for a person. It is never a user identity.
+ * No schedule runs on main, but the approval policies already recognize the
+ * principal so a schedule added later inherits sensible write behavior:
+ * reversible writes run, anything that ships still parks for a person. It is
+ * never a user identity.
  */
 export function isScheduleAppAuth(auth: SessionAuthContext | null): boolean {
   return (
