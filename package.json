@@ -1,8 +1,8 @@
 {
-  "name": "eve-software-factory-template",
+  "name": "eve-software-factory",
   "version": "0.0.0",
   "private": true,
-  "description": "Foreman, the eve Software Factory.",
+  "description": "Foreman, an eve software factory that turns GitHub issues into reviewed draft pull requests.",
   "license": "MIT",
   "type": "module",
   "imports": {

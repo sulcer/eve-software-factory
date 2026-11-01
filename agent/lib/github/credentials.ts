@@ -6,8 +6,8 @@ import { connectGitHubCredentials } from "@vercel/connect/eve";
  * @remarks
  * One connector serves every GitHub surface: the channel (webhooks, replies),
  * the `github` extension's tools, and the brokered git credential the station
- * sandboxes clone, fetch, and push with. The fallback is this template's own
- * connector UID; deployments set `GITHUB_CONNECTOR` to their own.
+ * sandboxes clone, fetch, and push with. The fallback is the connector UID this
+ * deployment used; another deployment sets `GITHUB_CONNECTOR` to its own.
  */
 export const GITHUB_CONNECTOR =
   process.env.GITHUB_CONNECTOR ?? "github/foreman-agent";
