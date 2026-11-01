@@ -1,25 +1,25 @@
 <img width="100%" alt="eve Software Factory Banner" src=".github/banner.png" />
 
-# eve Software Factory Template
+# eve Software Factory
 
-[![Docs](https://img.shields.io/badge/Documentation-000?style=flat-square&logo=readthedocs&logoColor=FFF&labelColor=000&color=000)](https://ask-foreman.dev/docs)
+[![Docs](https://img.shields.io/badge/Documentation-000?style=flat-square&logo=readthedocs&logoColor=FFF&labelColor=000&color=000)](https://vercel.com/kb/guide/eve-software-factory)
 [![Agent Stack](https://img.shields.io/badge/Agent%20Stack-000?style=flat-square&logo=vercel&logoColor=FFF&labelColor=000&color=000)](https://vercel.com/kb/agent-stack)
 [![MIT License](https://img.shields.io/badge/License-MIT-000?style=flat-square&logo=opensourceinitiative&logoColor=white&labelColor=000&color=000)](LICENSE)
 
 Meet **Foreman**, an eve software factory that puts AI agents on every stage of the development loop and keeps people on the judgment calls.
 
-Foreman takes tasks from GitHub, moves each one through four stations, and delivers a reviewed draft pull request on your repository. You review, mark ready, and merge.
+Foreman takes tasks from GitHub, moves each one through four stations, and delivers a reviewed draft pull request on the target repository. A person reviews, marks it ready, and merges.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=eve+Software+Factory&demo-description=Software+factory+built+on+eve%3A+AI+agents+work+each+stage+of+the+development+loop%2C+and+people+make+the+judgment+calls.&project-name=eve-software-factory&repository-name=eve-software-factory-template&repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Feve-software-factory-template&env=FACTORY_REPO%2CFACTORY_LABEL&envDefaults=%7B%22FACTORY_LABEL%22%3A%22factory%22%7D&envDescription=FACTORY_REPO+is+the+owner%2Frepo+the+factory+works+on.+FACTORY_LABEL+is+the+issue+label+that+hands+an+issue+to+the+factory%3B+the+default+label+is+fine.&connect=%5B%7B%22type%22%3A%22github%22%2C%22env%22%3A%22GITHUB_CONNECTOR%22%2C%22triggers%22%3Atrue%2C%22triggerPath%22%3A%22%2Feve%2Fv1%2Fgithub%22%7D%2C%7B%22type%22%3A%22linear%22%2C%22env%22%3A%22LINEAR_CONNECTOR%22%2C%22triggers%22%3Atrue%2C%22triggerPath%22%3A%22%2Feve%2Fv1%2Flinear%22%7D%5D&stores=%5B%7B%22type%22%3A%22blob%22%2C%22access%22%3A%22public%22%7D%5D&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F45PVqbeL5egwsqBRpGt6SQ%2F99e9f270dc22e07f499236af3a11a190%2Fimage.png&redirect-url=https%3A%2F%2Fask-foreman.dev%2Fwelcome)
+This deployment ran Foreman against [sulcer/cluide](https://github.com/sulcer/cluide) on the Vercel Hobby plan and the AI Gateway free tier, with GitHub as the only work source and a KERNEL cloud browser for web pages.
 
 ## How it works
 
 - **Classifier** triages the task: type, priority, complexity, actionable or not. When the task isn't actionable, Foreman asks the requester instead of building the wrong thing.
-- **Analyst** turns it into a plan with acceptance criteria, working from a live checkout of your repository.
-- **Implementer** executes the plan in its own sandbox, verifies with your repo's own checks, and pushes a branch.
+- **Analyst** turns it into a plan with acceptance criteria, working from a live checkout of the repository.
+- **Implementer** executes the plan in its own sandbox, verifies with the repo's own checks, and pushes a branch.
 - **Reviewer** independently judges everything against the real diff, with evidence for each verdict.
 
-Each station is its own agent with its own instructions, sandbox, and tools. The Reviewer sees only the pushed branch, never the Implementer's reasoning. Between runs, Foreman keeps a **factory brain**: notes about your repository that every run starts from. See [the pipeline](https://ask-foreman.dev/docs/pipeline) and [factory memory](https://ask-foreman.dev/docs/memory) for the full picture.
+Each station is its own agent with its own instructions, sandbox, and tools. The Reviewer sees only the pushed branch, never the Implementer's reasoning. Between runs, Foreman keeps a **factory brain**: notes about the repository that every run starts from. See [ARCHITECTURE.md](.github/ARCHITECTURE.md) for the full picture.
 
 ## How work arrives
 
@@ -29,28 +29,61 @@ Each station is its own agent with its own instructions, sandbox, and tools. The
 - **Red CI on a factory PR.** Foreman diagnoses the failure and pushes a fix to its own branches, never yours.
 - **Someone opens a pull request.** Foreman posts one orienting comment for reviewers: a summary, not a review.
 
-## Deploy
+## Setup
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=eve+Software+Factory&demo-description=Software+factory+built+on+eve%3A+AI+agents+work+each+stage+of+the+development+loop%2C+and+people+make+the+judgment+calls.&project-name=eve-software-factory&repository-name=eve-software-factory-template&repository-url=https%3A%2F%2Fgithub.com%2Fvercel-labs%2Feve-software-factory-template&env=FACTORY_REPO%2CFACTORY_LABEL&envDefaults=%7B%22FACTORY_LABEL%22%3A%22factory%22%7D&envDescription=FACTORY_REPO+is+the+owner%2Frepo+the+factory+works+on.+FACTORY_LABEL+is+the+issue+label+that+hands+an+issue+to+the+factory%3B+the+default+label+is+fine.&connect=%5B%7B%22type%22%3A%22github%22%2C%22env%22%3A%22GITHUB_CONNECTOR%22%2C%22triggers%22%3Atrue%2C%22triggerPath%22%3A%22%2Feve%2Fv1%2Fgithub%22%7D%2C%7B%22type%22%3A%22linear%22%2C%22env%22%3A%22LINEAR_CONNECTOR%22%2C%22triggers%22%3Atrue%2C%22triggerPath%22%3A%22%2Feve%2Fv1%2Flinear%22%7D%5D&stores=%5B%7B%22type%22%3A%22blob%22%2C%22access%22%3A%22public%22%7D%5D&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F45PVqbeL5egwsqBRpGt6SQ%2F99e9f270dc22e07f499236af3a11a190%2Fimage.png&redirect-url=https%3A%2F%2Fask-foreman.dev%2Fwelcome)
+Everything was provisioned from the Vercel CLI:
 
-The Vercel deploy flow sets up everything: the **GitHub** connector, **Vercel Blob** store, and a prompt for the `FACTORY_REPO` and `FACTORY_LABEL` environment variables.
+```bash
+vercel link
+vercel env add FACTORY_REPO -e production,preview,development --value sulcer/cluide --no-sensitive -y
+vercel blob create-store foreman-blob --access public --yes
+vercel connect create github --name foreman-agent --triggers --trigger-path /eve/v1/github \
+  --trigger-event issues --trigger-event issue_comment --trigger-event pull_request \
+  --trigger-event pull_request_review_comment --trigger-event check_suite -y
+vercel connect create kernel --name kernel-mcp --connection-method mcp
+vercel connect attach kernel/kernel-mcp
+```
 
-Two things must line up before Foreman can do any real work. `FACTORY_REPO` must name a real repository in `owner/repo` format, and the GitHub App behind the connector you select must be installed with access to that repository. A station's sandbox clones `FACTORY_REPO` on its first session, not at deploy time, so a repository the app cannot reach surfaces as a `Cannot access <owner/repo>` error on the first task you hand it, not the deploy itself; install the app on the repository (or fix the value), then try again.
+Two things must line up before Foreman can do any real work. `FACTORY_REPO` must name a real repository in `owner/repo` format, and the GitHub App behind the connector must be installed with access to that repository. A station's sandbox clones `FACTORY_REPO` on its first session, not at deploy time, so a repository the app cannot reach surfaces as a `Cannot access <owner/repo>` error on the first task, not at deploy.
+
+`KERNEL_API_KEY` stays unset everywhere: the browser authenticates each user through Vercel Connect.
 
 Configuration (see `.env.example`):
 
 | Variable | Required | Default | What it does |
 | --- | --- | --- | --- |
-| `FACTORY_REPO` | Yes | — | An existing GitHub repository in `owner/repo` format; the selected GitHub App must have access to it (a station's first session fails otherwise) |
-| `FACTORY_SETUP_COMMAND` | No | — | Runs once per session inside the station sandbox checkout (e.g. `pnpm install`), so the station starts with dependencies already installed |
+| `FACTORY_REPO` | Yes | — | An existing GitHub repository in `owner/repo` format; the GitHub App must have access to it (a station's first session fails otherwise) |
+| `FACTORY_SETUP_COMMAND` | No | — | Runs once per session inside the station sandbox checkout (e.g. `pnpm install`). The sandbox has no Bun, so leave it unset for a Bun repository like cluide |
 | `FACTORY_LABEL` | No | `factory` | The issue label that hands an issue to the factory |
 | `FACTORY_BRANCH_PREFIX` | No | `factory/` | Branch prefix marking the factory's own PRs, which are the only branches automated CI fixes touch |
 | `FACTORY_BOT_NAME` | No | the GitHub App's slug | The `@mention` name, resolved from the connector automatically when unset |
-| `GITHUB_CONNECTOR` | Yes | — | Set automatically from the Vercel Connect connector UID |
+| `GITHUB_CONNECTOR` | No | `github/foreman-agent` | The Vercel Connect connector UID |
+
+## What this setup changed
+
+- [#1](https://github.com/sulcer/eve-software-factory/pull/1) removed the Linear integration: GitHub is the only work source.
+- [#2](https://github.com/sulcer/eve-software-factory/pull/2) moved every station to free-tier models: `google/gemini-2.5-flash` for the orchestrator, analyst, implementer and researcher, `openai/gpt-oss-120b` for the classifier and reviewer.
+- [#3](https://github.com/sulcer/eve-software-factory/pull/3) added the KERNEL cloud browser in `agent/extensions/kernel/`. Its `connections/browser.ts` asks for approval once per tool per session and allows only the seven default tools.
+- [#4](https://github.com/sulcer/eve-software-factory/pull/4) added the `count_open_issues` tool.
+- [#5](https://github.com/sulcer/eve-software-factory/pull/5) added the `release-notes` skill.
+- The `feat/daily-triage-schedule` branch holds a read-only weekday triage digest. It stays unmerged so it never runs.
+
+## What ran
+
+- **Browser:** from the TUI, the KERNEL browser opened example.com and returned its title, "Example Domain".
+- **Evals:** smoke 15/15, write-requires-approval 3/3, factory-brain-write-parks 3/3, read-only-question 15/15. Gates graded by the judge model fail on the free tier.
+- **Tool and skill:** `count_open_issues` returned the live count from cluide. The `release-notes` skill loaded on 2 of 3 phrasings with Gemini 2.5 Flash.
+- **Pipeline:** an issue labeled `factory` on cluide reached the analyst and implementer, then stopped on rate limits.
+
+## Free-tier limits
+
+- Only five models are free, and the stations' original models aren't among them.
+- Each model allows 5 requests per minute, and eve has no model retry setting, so a full pipeline run doesn't finish.
+- The eval judge model, `typesafe-ai/jev`, is paid-only.
 
 ## Local development
 
-Link the project you deployed (or a fresh one), pull its environment, and start the TUI:
+Link the project, pull its environment, and start the TUI:
 
 ```bash
 vercel link
@@ -60,15 +93,16 @@ pnpm dev
 
 Hand the agent a task ("users report the password reset email arrives twice, fix it") and watch the four stations fire in order, ending in a draft PR on `FACTORY_REPO`. Local runs are treated as untrusted, so changes to GitHub wait for your approval in the TUI.
 
+Run the CLI through `pnpm exec eve` (`npx eve` can fetch a different eve release). `pnpm exec eve traces list` shows each run's tool calls, and `pnpm exec eve eval <ids> --url http://127.0.0.1:2000` runs evals against the dev server.
+
+## Status
+
+The deployment was retired on 2026-11-01. The code stays here as a record of the setup.
+
 ## Resources
 
-- [Foreman Docs](https://ask-foreman.dev/docs)
+- [eve Software Factory guide](https://vercel.com/kb/guide/eve-software-factory)
 - [Vercel Connect](https://vercel.com/docs/connect)
 - [eve Documentation](https://eve.dev/docs/introduction)
 - [GitHub Tools eve Extension](https://github-tools.com/frameworks/eve-extension)
-
-## Explore more templates
-
-- [eve Marketing Team](https://vercel.com/templates/eve/eve-marketing-team)
-- [eve Personal Agent](https://vercel.com/templates/nuxt/eve-personal-agent)
-- [eve Sanity Copilot](https://vercel.com/templates/eve/eve-sanity-copilot)
+- [KERNEL eve Extension](https://www.npmjs.com/package/@onkernel/eve-extension)
